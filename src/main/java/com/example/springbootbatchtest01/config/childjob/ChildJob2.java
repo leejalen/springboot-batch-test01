@@ -19,7 +19,7 @@ import java.util.Date;
  * Created on 2020/12/15
  * @Description 子任务2
  */
-@Configuration
+//@Configuration
 public class ChildJob2 {
 
     @Autowired

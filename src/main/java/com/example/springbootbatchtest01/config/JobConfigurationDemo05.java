@@ -19,8 +19,8 @@ import org.springframework.transaction.PlatformTransactionManager;
  * Created on 2020/12/15
  * @Description Job的嵌套
  */
-@Configuration
-@EnableBatchProcessing
+//@Configuration
+//@EnableBatchProcessing
 public class JobConfigurationDemo05 {
 
     @Autowired
@@ -45,7 +45,6 @@ public class JobConfigurationDemo05 {
                 .next(childJob2(jobRepository, transactionManager))
                 .build();
     }
-
 
     private Step childJob1(JobRepository jobRepository, PlatformTransactionManager transactionManager){
         return new JobStepBuilder(new StepBuilder("childJob1"))
