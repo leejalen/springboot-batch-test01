@@ -20,8 +20,8 @@ import org.springframework.core.io.Resource;
  * Created on 2020/12/16
  * @Description 从多个文件中读取数据
  */
-@Configuration
-@EnableBatchProcessing
+//@Configuration
+//@EnableBatchProcessing
 public class JobConfigurationDemo12 {
 
     @Autowired
