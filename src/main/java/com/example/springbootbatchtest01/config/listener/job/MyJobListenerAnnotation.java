@@ -10,21 +10,20 @@ import org.springframework.stereotype.Component;
 /**
  * @author leejalen
  * Created on 2020/12/15
- * @Description
+ * @Description TODO 此注解方式的监听没试验成功
  */
 @Component
-public class MyJobListenerAnnotation{
+public class MyJobListenerAnnotation {
 
     @BeforeJob
-    public void beforeJob(JobExecution jobExecution) {
+    public void before(JobExecution jobExecution) {
         String jobName = jobExecution.getJobInstance().getJobName();
-        System.out.println(jobName + "开始启动");
+        System.out.println(jobName + "开始启动///////////");
     }
 
     @AfterJob
-    public void afterJob(JobExecution jobExecution) {
+    public void after(JobExecution jobExecution) {
         String jobName = jobExecution.getJobInstance().getJobName();
         System.out.println(jobName + "执行完成");
     }
-
 }
