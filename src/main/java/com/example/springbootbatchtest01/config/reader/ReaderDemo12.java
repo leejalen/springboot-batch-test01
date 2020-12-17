@@ -14,7 +14,7 @@ import org.springframework.validation.BindException;
 /**
  * @author leejalen
  * Created on 2020/12/16
- * @Description
+ * @Description 从多个文件读取数据
  */
 @Component
 public class ReaderDemo12 {
@@ -43,6 +43,7 @@ public class ReaderDemo12 {
         });
         mapper.afterPropertiesSet();
         reader.setLineMapper(mapper);
+        System.out.println("ReaderDemo12读取完成");
         return reader;
     }
 }

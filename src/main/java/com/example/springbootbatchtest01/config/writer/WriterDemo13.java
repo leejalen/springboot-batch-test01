@@ -7,6 +7,7 @@ import org.springframework.batch.item.database.JdbcBatchItemWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 
@@ -15,20 +16,19 @@ import javax.sql.DataSource;
  * Created on 2020/12/16
  * @Description
  */
-@Configuration
+@Component
 public class WriterDemo13 {
 
     @Autowired
     private DataSource dataSource;
 
-    @Bean
-    public JdbcBatchItemWriter<User> itemWriter(){
+    public JdbcBatchItemWriter<User> writer13(){
         JdbcBatchItemWriter<User> itemWriter = new JdbcBatchItemWriter<>();
         itemWriter.setDataSource(dataSource);
         itemWriter.setSql("insert into batch_test_user(id, username, password, age)" +
                 "values(:id, :username, :password, :age)");
         itemWriter.setItemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<>());
-        System.out.println("----------------------------");
+        System.out.println("WriterDemo13写入完成");
         return itemWriter;
     }
 }

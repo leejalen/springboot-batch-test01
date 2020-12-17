@@ -11,13 +11,13 @@ import java.util.List;
  * Created on 2020/12/16
  * @Description
  */
-@Component("writer")
+@Component
 public class WriterDemo10 implements ItemWriter<User> {
     @Override
     public void write(List<? extends User> list) throws Exception {
         for (User item : list){
             System.out.println(item.toString());
         }
-        System.out.println("????????????????????");
+        System.out.println("WriterDemo10写入完成");
     }
 }

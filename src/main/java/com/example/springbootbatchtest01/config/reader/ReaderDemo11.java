@@ -13,9 +13,9 @@ import java.util.Map;
 /**
  * @author leejalen
  * Created on 2020/12/16
- * @Description
+ * @Description 从指定xml文件读取数据
  */
-@Component("readerDemo11")
+@Component
 public class ReaderDemo11 {
 
     public StaxEventItemReader<User> reader(){
@@ -31,6 +31,7 @@ public class ReaderDemo11 {
         xStreamMarshaller.setAliases(map);
 
         reader.setUnmarshaller(xStreamMarshaller);
+        System.out.println("ReaderDemo11读取完成");
         return reader;
     }
 }

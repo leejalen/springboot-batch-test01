@@ -18,6 +18,6 @@ public class WriterDemo12 implements ItemWriter<User> {
         for (User item : list){
             System.out.println(item.toString());
         }
-        System.out.println("????????????????????");
+        System.out.println("WriterDemo12写入完成");
     }
 }

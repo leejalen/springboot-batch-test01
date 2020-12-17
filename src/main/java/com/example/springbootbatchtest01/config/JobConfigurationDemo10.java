@@ -35,19 +35,19 @@ public class JobConfigurationDemo10 {
     @Autowired
     private ItemWriter<User> writerDemo09;
 
-    @Bean
-    public Job job_demo10(){
-        return jobBuilderFactory.get("job03_demo10")
-                .start(step_demo10())
-                .build();
-    }
-
-    @Bean
-    public Step step_demo10(){
-        return stepBuilderFactory.get("step03_demo10")
-                .<User, User>chunk(10)
-                .reader(reader)
-                .writer(writerDemo09)
-                .build();
-    }
+//    @Bean
+//    public Job job_demo10(){
+//        return jobBuilderFactory.get("job03_demo10")
+//                .start(step_demo10())
+//                .build();
+//    }
+//
+//    @Bean
+//    public Step step_demo10(){
+//        return stepBuilderFactory.get("step03_demo10")
+//                .<User, User>chunk(10)
+//                .reader(reader)
+//                .writer(writerDemo09)
+//                .build();
+//    }
 }

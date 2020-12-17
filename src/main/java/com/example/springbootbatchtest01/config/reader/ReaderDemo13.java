@@ -9,18 +9,18 @@ import org.springframework.batch.item.file.transform.FieldSet;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.stereotype.Component;
 import org.springframework.validation.BindException;
 
 /**
  * @author leejalen
  * Created on 2020/12/16
- * @Description
+ * @Description 从指定csv文件读取数据
  */
-@Configuration
+@Component
 public class ReaderDemo13 {
 
-    @Bean
-    public FlatFileItemReader<User> flatFileItemReader(){
+    public FlatFileItemReader<User> reader13(){
         FlatFileItemReader<User> reader = new FlatFileItemReader<>();
         reader.setResource(new ClassPathResource("user-data.csv"));
         //跳过第一行
@@ -44,6 +44,7 @@ public class ReaderDemo13 {
         });
         mapper.afterPropertiesSet();
         reader.setLineMapper(mapper);
+        System.out.println("ReaderDemo13读取完成");
         return reader;
     }
 }

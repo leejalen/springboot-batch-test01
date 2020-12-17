@@ -14,11 +14,11 @@ import org.springframework.validation.BindException;
 /**
  * @author leejalen
  * Created on 2020/12/16
- * @Description
+ * @Description 从指定csv文件读取数据
  */
 @Component
 public class ReaderDemo10 {
-
+    
     public FlatFileItemReader<User> reader(){
         FlatFileItemReader<User> reader = new FlatFileItemReader<>();
         reader.setResource(new ClassPathResource("user-data.csv"));
@@ -43,6 +43,7 @@ public class ReaderDemo10 {
         });
         mapper.afterPropertiesSet();
         reader.setLineMapper(mapper);
+        System.out.println("ReaderDemo10读取完成");
         return reader;
     }
 }

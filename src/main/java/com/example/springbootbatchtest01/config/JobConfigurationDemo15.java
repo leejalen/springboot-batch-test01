@@ -6,20 +6,21 @@ import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
-import org.springframework.batch.item.database.JdbcBatchItemWriter;
-import org.springframework.batch.item.file.FlatFileItemReader;
+import org.springframework.batch.item.ItemReader;
+import org.springframework.batch.item.ItemWriter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
  * @author leejalen
- * Created on 2020/12/16
- * @Description 输出数据到数据库
+ * Created on 2020/12/17
+ * @Description 从数据库输出文件到xml文件
  */
 //@Configuration
 //@EnableBatchProcessing
-public class JobConfigurationDemo13 {
+public class JobConfigurationDemo15 {
 
     @Autowired
     private JobBuilderFactory jobBuilderFactory;
@@ -28,24 +29,26 @@ public class JobConfigurationDemo13 {
     private StepBuilderFactory stepBuilderFactory;
 
 //    @Autowired
-//    private FlatFileItemReader<User> flatFileItemReader;
+//    @Qualifier("reader_demo15")
+//    private ItemReader<User> reader;
 //
 //    @Autowired
-//    private JdbcBatchItemWriter<User> itemWriter;
+//    @Qualifier("writer_demo15")
+//    private ItemWriter<User> writer;
 
 //    @Bean
-//    public Job job_demo13(){
-//        return jobBuilderFactory.get("job_demo13")
-//                .start(step_demo13())
+//    public Job job_demo15(){
+//        return jobBuilderFactory.get("job01_demo15")
+//                .start(step_demo15())
 //                .build();
 //    }
 //
 //    @Bean
-//    public Step step_demo13(){
-//        return stepBuilderFactory.get("step_demo13")
+//    public Step step_demo15(){
+//        return stepBuilderFactory.get("step01_demo15")
 //                .<User, User>chunk(10)
-//                .reader(flatFileItemReader)
-//                .writer(itemWriter)
+//                .reader(reader)
+//                .writer(writer)
 //                .build();
 //    }
 }
