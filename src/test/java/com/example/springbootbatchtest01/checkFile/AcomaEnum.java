@@ -112,12 +112,13 @@ public enum AcomaEnum {
         this.start = start;
     }
 
-    public static Map<Integer, List<Integer>> getAcomaMap(){
-        Map<Integer, List<Integer>> map = new HashMap<>();
+    public static Map<Integer, List<Object>> getAcomaMap(){
+        Map<Integer, List<Object>> map = new HashMap<>();
         for (AcomaEnum acomaEnum : values()){
-            List<Integer> list = new ArrayList<>();
+            List<Object> list = new ArrayList<>();
             list.add(acomaEnum.getStart());
             list.add(acomaEnum.getLength());
+            list.add(acomaEnum.getRemark());
             map.put(acomaEnum.getCode(), list);
         }
         return map;

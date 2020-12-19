@@ -12,23 +12,35 @@ import java.util.UUID;
  */
 public class AcomaParse {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        long startTime = System.currentTimeMillis();
+
         String dirPath = "D:\\testPackage\\oldCsv\\";
         File file = new File(dirPath);
         String[] fileList = file.list();
+
+        Map<Integer, List<Object>> fieldInfoMap = AcomaEnum.getAcomaMap();
+        Integer chineseIndex = 41;
+        int count = 0;
+
+        PraseCommonUtil praseCommonUtil = new PraseCommonUtil();
         for (int i = 0; i < fileList.length; i++) {
             String oldFileName = fileList[i];
             String oldFilePath = dirPath + oldFileName;
             String newFilePath = "D:\\testPackage\\newCsv\\" + oldFileName + ".csv";
-            parse(oldFilePath, newFilePath);
+            //parse(oldFilePath, newFilePath);
+            int parseNum = praseCommonUtil.parse(oldFilePath, newFilePath, fieldInfoMap, chineseIndex);
+            count = count +parseNum;
         }
-        //parse();
-        System.out.println("解析完成");
+        praseCommonUtil.closeStream();
+
+        long endTime = System.currentTimeMillis();
+        System.out.println("解析完成"+count +" 耗时:" + (endTime - startTime));
     }
 
     public static void parse(String oldFilePath, String newFilePath){
         String filePath = oldFilePath;
-        Map<Integer, List<Integer>> map = AcomaEnum.getAcomaMap();
+        Map<Integer, List<Object>> map = AcomaEnum.getAcomaMap();
         try {
             BufferedInputStream buffIn = new BufferedInputStream(new FileInputStream(filePath));
             BufferedReader reader = new BufferedReader(new InputStreamReader(buffIn, "gbk"));
@@ -45,9 +57,9 @@ public class AcomaParse {
 
                 StringBuilder newLine = new StringBuilder();
                 for (int i = 0; i < map.size(); i++) {
-                    List<Integer> fieldInfo = map.get(i+1);
-                    int fieldStart = fieldInfo.get(0);
-                    int fieldLength = fieldInfo.get(1);
+                    List<Object> fieldInfo = map.get(i+1);
+                    int fieldStart = (Integer) fieldInfo.get(0);
+                    int fieldLength = (Integer) fieldInfo.get(1);
                     String thisField = line.substring(fieldStart, fieldStart + fieldLength).trim();
 
                     if (i == 0 ){
@@ -90,18 +102,20 @@ public class AcomaParse {
     }
 
     public static void initFile(BufferedWriter writer) throws IOException {
-        Map<Integer, String> map = AcomaEnum.getRemarkMap();
+        //Map<Integer, String> map = AcomaEnum.getRemarkMap();
+        Map<Integer, List<Object>> fieldInfoMap = AcomaEnum.getAcomaMap();
         //序号
         StringBuilder seqStr = new StringBuilder();
         //字段名
         StringBuilder fieldName = new StringBuilder();
-        for (int i = 0; i < map.size(); i++) {
+        for (int i = 0; i < fieldInfoMap.size(); i++) {
+            List<Object> fieldInfo = fieldInfoMap.get(i+1);
             if ( i == 0){
                 seqStr = seqStr.append("序号").append(i + 1);
-                fieldName = fieldName.append(map.get(i + 1));
+                fieldName = fieldName.append(fieldInfo.get(2));
             }else {
                 seqStr = seqStr.append(",").append("序号").append(i + 1);
-                fieldName = fieldName.append(",").append(map.get(i + 1));
+                fieldName = fieldName.append(",").append(fieldInfo.get(2));
             }
         }
         writer.write(seqStr.toString());
