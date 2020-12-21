@@ -20,6 +20,6 @@ public class Test02 {
 //        list.add(1);
 //        list.add(2);
 //        System.out.println(list.get(0));
-        System.out.println(AcomaEnum.getAcomaMap());
+        System.out.println(AerraEnum.getAerraMap());
     }
 }

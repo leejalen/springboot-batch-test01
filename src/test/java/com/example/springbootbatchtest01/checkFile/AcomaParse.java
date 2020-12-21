@@ -15,7 +15,7 @@ public class AcomaParse {
     public static void main(String[] args) throws IOException {
         long startTime = System.currentTimeMillis();
 
-        String dirPath = "D:\\testPackage\\oldCsv\\";
+        String dirPath = "D:\\testPackage\\oldACOMA\\";
         File file = new File(dirPath);
         String[] fileList = file.list();
 
@@ -23,16 +23,15 @@ public class AcomaParse {
         Integer chineseIndex = 41;
         int count = 0;
 
-        PraseCommonUtil praseCommonUtil = new PraseCommonUtil();
         for (int i = 0; i < fileList.length; i++) {
+            PraseCommonUtil praseCommonUtil = new PraseCommonUtil();
             String oldFileName = fileList[i];
             String oldFilePath = dirPath + oldFileName;
-            String newFilePath = "D:\\testPackage\\newCsv\\" + oldFileName + ".csv";
-            //parse(oldFilePath, newFilePath);
+            String newFilePath = "D:\\testPackage\\newACOMA\\" + oldFileName + ".csv";
             int parseNum = praseCommonUtil.parse(oldFilePath, newFilePath, fieldInfoMap, chineseIndex);
             count = count +parseNum;
+            praseCommonUtil.closeStream();
         }
-        praseCommonUtil.closeStream();
 
         long endTime = System.currentTimeMillis();
         System.out.println("解析完成"+count +" 耗时:" + (endTime - startTime));

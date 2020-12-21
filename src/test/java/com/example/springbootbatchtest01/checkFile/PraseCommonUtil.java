@@ -29,10 +29,10 @@ public class PraseCommonUtil {
         int count = 0;
         try {
             buffIn = new BufferedInputStream(new FileInputStream(oldFilePath));
-            reader = new BufferedReader(new InputStreamReader(buffIn, "gbk"));
+            reader = new BufferedReader(new InputStreamReader(buffIn, "GBK"));
 
             buffOut = new BufferedOutputStream(new FileOutputStream(newFilePath));
-            writer =new BufferedWriter(new OutputStreamWriter(buffOut));
+            writer =new BufferedWriter(new OutputStreamWriter(buffOut,"GBK"));
             //初始化文件表头
             initFile(writer, fieldInfoMap);
 
