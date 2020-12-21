@@ -6,9 +6,11 @@ spring:
   batch:
     #数据库初始化配置
     initialize-schema: always
-    #指定启动的父任务，子任务只能随父任务启动而启动, 如不用父子任务的形式启动，此配置必须注解
-#    job:
-#      names: parentJob
+    job:
+      #批处理任务不自动启动
+      enabled: false
+      #指定启动的父任务，子任务只能随父任务启动而启动, 如不用父子任务的形式启动，此配置必须注解
+      #names: parentJob
   #对外暴露的名字
   application:
     name: springboot-batch

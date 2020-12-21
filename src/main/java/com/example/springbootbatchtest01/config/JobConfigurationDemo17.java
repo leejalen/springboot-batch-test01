@@ -1,32 +1,26 @@
 package com.example.springbootbatchtest01.config;
 
 import com.example.springbootbatchtest01.config.entity.User;
-import com.example.springbootbatchtest01.config.reader.ReaderDemo16;
-import com.example.springbootbatchtest01.config.writer.WriterDemo16;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
+import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.ItemWriter;
-import org.springframework.batch.item.database.JdbcPagingItemReader;
-import org.springframework.batch.item.support.CompositeItemWriter;
+import org.springframework.batch.item.support.CompositeItemProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import javax.annotation.Resource;
-
 /**
  * @author leejalen
- * Created on 2020/12/17
- * @Description 从数据库输出到多个文件
+ * Created on 2020/12/21
+ * @Description ItemProcessor处理
  */
-//@Configuration
-//@EnableBatchProcessing
-public class JobConfigurationDemo16 {
+@Configuration
+public class JobConfigurationDemo17 {
 
     @Autowired
     private JobBuilderFactory jobBuilderFactory;
@@ -35,24 +29,31 @@ public class JobConfigurationDemo16 {
     private StepBuilderFactory stepBuilderFactory;
 
     @Autowired
-    private ReaderDemo16 readerDemo16;
+    private ItemReader<User> reader17;
 
     @Autowired
-    private WriterDemo16 writerDemo16;
+    private ItemProcessor<User, User> processor17;
+
+    @Autowired
+    private ItemProcessor<User, User> multiProcessor17;
+
+    @Autowired
+    private ItemWriter<User> writer17;
 
     @Bean
-    public Job job_demo16() throws Exception {
-        return jobBuilderFactory.get("job24_demo16")
-                .start(step_demo16())
+    public Job job_demo17() throws Exception {
+        return jobBuilderFactory.get("job18_demo17")
+                .start(step_demo17())
                 .build();
     }
 
     @Bean
-    public Step step_demo16() throws Exception {
-        return stepBuilderFactory.get("step24_demo16")
+    public Step step_demo17() throws Exception {
+        return stepBuilderFactory.get("step18_demo17")
                 .<User, User>chunk(10)
-                .reader(readerDemo16.reader16())
-                .writer(writerDemo16.writer16())
+                .reader(reader17)
+                .processor(multiProcessor17)
+                .writer(writer17)
                 .build();
     }
 }

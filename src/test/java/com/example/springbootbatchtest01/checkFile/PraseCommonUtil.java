@@ -79,7 +79,6 @@ public class PraseCommonUtil {
 
     public void closeStream() throws IOException {
         //关闭流和读写
-
         if (reader != null){
             reader.close();
         }

@@ -1,13 +1,11 @@
 package com.example.springbootbatchtest01.config.reader;
 
 import com.example.springbootbatchtest01.config.entity.User;
-import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.item.database.JdbcPagingItemReader;
 import org.springframework.batch.item.database.Order;
 import org.springframework.batch.item.database.support.MySqlPagingQueryProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
@@ -23,12 +21,13 @@ import java.util.Map;
  * @Description
  */
 @Component
-public class ReaderDemo16 {
+public class ReaderDemo17 {
 
     @Autowired
     private DataSource dataSource;
 
-    public JdbcPagingItemReader<User> reader16(){
+    @Bean
+    public JdbcPagingItemReader<User> reader17(){
         JdbcPagingItemReader<User> reader = new JdbcPagingItemReader<>();
         reader.setDataSource(dataSource);
         reader.setFetchSize(10);
@@ -56,7 +55,7 @@ public class ReaderDemo16 {
 
         reader.setQueryProvider(queryProvider);
 
-        System.out.println("reader_demo16读取完成");
+        System.out.println("reader_demo17读取完成");
         return reader;
     }
 }
