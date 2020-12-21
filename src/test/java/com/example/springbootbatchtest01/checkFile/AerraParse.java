@@ -34,6 +34,6 @@ public class AerraParse {
         }
 
         long endTime = System.currentTimeMillis();
-        System.out.println("解析完成"+count +" 耗时:" + (endTime - startTime));
+        System.out.println("解析完成" + count +" 耗时:" + (endTime - startTime));
     }
 }
